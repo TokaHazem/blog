@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PostsController;
 
 
 /*
@@ -19,4 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
  
-Route::get('/test',[TestController::class,'firstAction']);
+Route::get('/posts',[PostsController::class,'index']);
