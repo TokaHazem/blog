@@ -2,7 +2,7 @@
 @section('title') Index @endsection
 @section('content')
 <div class='container text-center mt-4'>
-    <a href="{{route('posts.create')}}" class="btn btn-success">Make Posts</a>
+    <a href="{{route('posts.create')}}" class="btn btn-success">Create Posts</a>
 
     <table class="table mt-4">
   <thead>
