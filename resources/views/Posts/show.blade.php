@@ -24,36 +24,35 @@
         </li>
   </div>
 </nav>
-<div class='container text-center mt-4'>
-    <button type="button" class="btn btn-success">Make Posts</button>
+@foreach ($posts as $post )
+@if ($postid==$post['id'])
+<div class='container  mt-4'>
+  <div class="card  mb-4">
+  <div class="card-header">
+    {{$post['title']}}
+  </div>
+  <div class="card-body  ">
+    <h5 class="card-title">{{$post['title']}}</h5>
+    <p class="card-text">Posted By : {{$post['posted_by']}} <br/> Created at : {{$post['created_at']}}</p>
+  </div>
 
-    <table class="table mt-4">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Posted by</th>
-      <th scope="col">Created at</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($posts as $post )
-    
-    <tr>
-      <th scope="row">{{$post['id']}}</th>
-      <td>{{$post['title']}}</td>
-      <td>{{$post['posted_by']}}</td>
-      <td>{{$post['created_at']}}</td>
-      <td> <a href="/posts/{{$post['id']}}" class="btn btn-info">View</a>
-           <a href='#' class="btn btn-primary">Edit</a>
-           <a href='#' class="btn btn-danger">Delete</a>
-      </td>
-    </tr>
-   @endforeach
-  </tbody>
-</table>
+</div> 
 </div>
+<div class='container  mt-4'>
+  <div class="card  mb-4">
+  <div class="card-header">
+    Description
+  </div>
+  <div class="card-body  ">
+    <h5 class="card-title">{{$post['title']}}</h5>
+    <p class="card-text">{{$post['Description']}}</p>
+  </div>
+</div> 
+</div>
+@endif
+@endforeach
+
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
