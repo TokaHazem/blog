@@ -22,4 +22,17 @@ class PostsController extends Controller
     {
         return view('posts.show',['posts'=>$this->allposts,'postid'=>$PostId]);
     }
+
+    public function create(){
+        return view('posts.create');
+    }
+    public function store(){
+        $data=request()->all();
+
+        $title=request()->title;
+        $description=request()->description;
+        $name=request()->name;
+        
+        return to_route('posts.index');
+    }
 }
