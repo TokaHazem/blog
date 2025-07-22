@@ -24,14 +24,34 @@ class PostsController extends Controller
     }
 
     public function create(){
-        return view('posts.create');
+        return view('posts.create',['posts'=>$this->allposts]);
     }
     public function store(){
         $data=request()->all();
+        $title = request()->title;
+        $description = request()->Description;
+        $postCreator = request()->posted_by;
+ 
+        return to_route('posts.index');
+    }
 
-        $title=request()->title;
-        $description=request()->description;
-        $name=request()->name;
+    public function edit($PostId){
+       
+       return view('posts.edit',['posts'=>$this->allposts,'postid'=>$PostId]);
+    }
+
+    public function update($PostId){
+       
+
+        $title = request()->title;
+        $description = request()->Description;
+        $postCreator = request()->posted_by;
+        
+        
+        return to_route('posts.show',$PostId);
+    }
+
+    public function  destroy(){
         
         return to_route('posts.index');
     }

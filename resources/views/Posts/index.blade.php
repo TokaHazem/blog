@@ -23,14 +23,33 @@
       <td>{{$post['posted_by']}}</td>
       <td>{{$post['created_at']}}</td>
       <td> <a href="{{route('posts.show',$post['id'])}}" class="btn btn-info">View</a>
-           <a href='#' class="btn btn-primary">Edit</a>
-           <a href='#' class="btn btn-danger">Delete</a>
+           <a href='{{route('posts.edit',$post['id'])}}' class="btn btn-primary">Edit</a>
+           <form method="post" action="{{route('posts.destroy',$post['id'])}}" style="display: inline">
+            @csrf
+           @method('delete')
+            <button type="submit" class="btn btn-danger" onclick="confirmAction()">Delete</button>
+    
+           </form>
+           
       </td>
     </tr>
    @endforeach
   </tbody>
 </table>
 </div>
+
+<script>
+function confirmAction() {
+    if (confirm("Do you want to Delete?")) {
+       
+        alert(Deleted);
+        
+    } else {
+        
+        alert(Canceled);
+    }
+}
+</script>
 @endsection
 
    
