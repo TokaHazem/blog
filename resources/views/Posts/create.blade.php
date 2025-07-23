@@ -15,18 +15,23 @@ Creat Posts
   <textarea name="Description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Creator Name</label>
-  <input name="posted_by" type="text" class="form-control" id="exampleFormControlInput1">
+ <select class="form-select" aria-label="Default select example">
+ @foreach ($Users as $user)
+ <option value="{{$user->id}}">{{$user->name}}</option>
+ @endforeach
+  
+  
+</select>
 </div>
 <div class="mb-3">
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  @foreach ($posts as $post )
+  {{-- @foreach ($posts as $post )
   {{-- @for ($i=0 ; $i<count($post) ; $i++) --}}
-  <input type="hidden" name='id' value='{{++$post['id']}}'>   
+ {{--  <input type="hidden" name='id' value='{{++$post['id']}}'>    --}}
   {{-- @endfor  --}}
-  @endforeach
+ {{--  @endforeach --}}
   {{-- @dd($post); --}}
-    
+     
 
 
     <button type="submit" class="btn btn-success me-md-2">Submit</button>
