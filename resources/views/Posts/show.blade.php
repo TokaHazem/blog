@@ -11,7 +11,7 @@
   </div>
   <div class="card-body  ">
     <h5 class="card-title">Title : {{$post->title}}</h5>
-    <p class="card-text"> Posted By : {{$post->posted_by}} <br/> Created at : {{$post->created_at}}</p>
+    <p class="card-text"> Posted By : {{$post->user ? $post->user->name : 'NOT FOUND'}} <br/> Created at : {{$post->created_at}}</p>
   </div>
 
 </div> 

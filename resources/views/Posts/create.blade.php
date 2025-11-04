@@ -6,34 +6,33 @@ Creat Posts
 <div class='container  mt-4'>
     <form method="post" action="{{route('posts.store')}}">
         @csrf
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Titel</label>
-  <input name="title"   type="text" class="form-control" id="exampleFormControlInput1">
+  <input name="title"   type="text" class="form-control" id="exampleFormControlInput1" value={{ old("title") }}>
 </div>
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Describtion</label>
-  <textarea name="Description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea name="Description" class="form-control" id="exampleFormControlTextarea1" rows="3"> {{ old("Description") }}</textarea>
 </div>
 <div class="mb-3">
- <select class="form-select" aria-label="Default select example">
+ <select class="form-select" aria-label="Default select example" name="posted_by">
  @foreach ($Users as $user)
  <option value="{{$user->id}}">{{$user->name}}</option>
  @endforeach
-  
-  
+   
 </select>
 </div>
 <div class="mb-3">
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  {{-- @foreach ($posts as $post )
-  {{-- @for ($i=0 ; $i<count($post) ; $i++) --}}
- {{--  <input type="hidden" name='id' value='{{++$post['id']}}'>    --}}
-  {{-- @endfor  --}}
- {{--  @endforeach --}}
-  {{-- @dd($post); --}}
-     
-
-
     <button type="submit" class="btn btn-success me-md-2">Submit</button>
  </div> 
 </div>

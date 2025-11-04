@@ -39,22 +39,31 @@ protected $allposts=[
         return view('posts.create',['Users'=>$Users]);
     }
     public function store(){
+
+       request()->validate([
+    'title' => ['required', 'min:3'],
+    'Description' => ['required', 'min:5'],
+    'posted_by'=>['required','exists:users,id'],
+]);
+
         $data=request()->all();
         $title = request()->title;
         $description = request()->Description;
         $postCreator = request()->posted_by;
+       
         Post::create([
             'title'=> $title,
             'Description'=>$description,
+            'user_id'=>$postCreator,
 
         ]);
  
         return to_route('posts.index');
     }
 
-    public function edit($PostId){
-       
-       return view('posts.edit',['posts'=>$this->allposts,'postid'=>$PostId]);
+    public function edit(Post $post){
+       $Users=User::all();
+       return view('posts.edit',['Users'=>$Users,'post'=> $post]);
     }
 
     public function update($PostId){
@@ -64,12 +73,18 @@ protected $allposts=[
         $description = request()->Description;
         $postCreator = request()->posted_by;
         
-        
+        $SinglePostFromDB= Post::find($PostId);
+        $SinglePostFromDB->update([
+            'title'=> $title,
+            'Description'=>$description,
+             'user_id'=>$postCreator,
+        ] );
         return to_route('posts.show',$PostId);
     }
 
-    public function  destroy(){
-        
+    public function  destroy($PostId){
+       $post=post::find($PostId);
+       $post ->delete();
         return to_route('posts.index');
     }
 }

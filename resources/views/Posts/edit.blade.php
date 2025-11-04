@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-@foreach ($posts as $post )
-@if ($postid==$post['id'])
-@section('title') Edit {{$post['title']}} @endsection
+
+
+@section('title') Edit  @endsection
 <div class='container  mt-4'>
-    <form method="POST" action="{{route('posts.update',$postid)}}">
+    <form method="POST" action="{{route('posts.update',$post->id)}}">
         @csrf
         @method('PUT')
 <div class="mb-3">
@@ -17,8 +17,13 @@
   <textarea name="Description" class="form-control" id="exampleFormControlTextarea1" rows="3" >{{$post['Description']}}</textarea>
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Creator Name</label>
-  <input name="posted_by" type="text" class="form-control" id="exampleFormControlInput1" value="{{$post['posted_by']}}" >
+ <select class="form-select" aria-label="Default select example" name="posted_by">
+ @foreach ($Users as $user)
+ <option @selected ($user->id == $post->user_id) value="{{$user->id}}">{{$user->name}}</option>
+ @endforeach
+  
+  
+</select>
 </div>
 <div class="mb-3">
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -30,7 +35,5 @@
 </div>
 
 
-@endif
-@endforeach
 
 @endsection
