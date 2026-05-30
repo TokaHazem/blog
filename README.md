@@ -15,5 +15,3 @@ A fully-featured, secure, and dynamic Blogging System built from scratch using n
 - **Database:** MySQL
 - **Frontend:** HTML5, CSS3, JavaScript, Bootstrap
 
-## 📸 Demo
-*(Optional: You can add a link to your screen recording video here!)*
